@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Internet Epochalypse — How to Play</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@600;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  :root { --green:#3dff7a; --amber:#ffb000; --ink:#05080a; --key:#dfffe6; --dim:#9bbcab; }
+  html, body { background:#000; color:var(--key); font-family:'Space Grotesk',sans-serif; -webkit-font-smoothing:antialiased; }
+
+  .page { position:relative; width:816px; height:1056px; margin:0 auto; overflow:hidden;
+    background:radial-gradient(120% 60% at 50% -8%, #0a1f14 0%, #05080a 58%, #03060a 100%);
+    -webkit-print-color-adjust:exact; print-color-adjust:exact; padding:46px 56px 40px; }
+  .page::after { content:''; position:absolute; inset:0; pointer-events:none;
+    background:repeating-linear-gradient(transparent 0 3px, rgba(0,0,0,.16) 3px 4px); mix-blend-mode:multiply; }
+  .wrap { position:relative; z-index:2; height:100%; display:flex; flex-direction:column; }
+
+  .head { display:flex; align-items:flex-end; justify-content:space-between; gap:20px;
+    border-bottom:2px solid rgba(61,255,122,.3); padding-bottom:18px; }
+  .head .kick { font-family:'Press Start 2P',monospace; font-size:9px; letter-spacing:.26em; color:var(--green); margin-bottom:11px; }
+  .head h1 { font-family:'Archivo',sans-serif; font-weight:900; font-size:42px; line-height:.92; letter-spacing:-1px; text-transform:uppercase;
+    text-shadow:0 0 18px rgba(61,255,122,.35); }
+  .head h1 small { display:block; font-size:18px; color:var(--amber); font-weight:800; letter-spacing:.5px; text-shadow:none; margin-top:5px; max-width:430px; }
+  .head .badge { flex:none; text-align:right; font-family:'VT323',monospace; font-size:17px; color:var(--dim); line-height:1.4; }
+  .head .badge b { color:var(--green); display:block; font-size:19px; white-space:nowrap; margin-bottom:2px; }
+
+  .steps { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px; }
+  .card { border:1px solid rgba(61,255,122,.22); border-radius:10px; padding:15px 17px;
+    background:linear-gradient(180deg, rgba(61,255,122,.06), rgba(61,255,122,.015)); }
+  .card .n { display:flex; align-items:center; gap:10px; margin-bottom:9px; }
+  .card .n i { flex:none; width:26px; height:26px; border-radius:6px; background:var(--green); color:var(--ink);
+    font-family:'Press Start 2P',monospace; font-size:11px; display:flex; align-items:center; justify-content:center; }
+  .card .n h3 { font-size:16px; font-weight:700; letter-spacing:.3px; color:var(--key); }
+  .card p { font-size:14px; line-height:1.5; color:var(--dim); }
+  .card p b { color:var(--key); font-weight:600; }
+  .card .kbd { font-family:'VT323',monospace; color:var(--amber); font-size:15px; }
+
+  .cap { margin-top:16px; border:1px solid rgba(255,176,0,.32); border-radius:12px; overflow:hidden;
+    background:linear-gradient(180deg, rgba(255,176,0,.07), rgba(255,176,0,.015)); flex:1; }
+  .cap .bar { display:flex; align-items:center; justify-content:space-between; gap:12px;
+    background:rgba(255,176,0,.14); padding:11px 18px; border-bottom:1px solid rgba(255,176,0,.28); }
+  .cap .bar h2 { font-family:'Archivo',sans-serif; font-weight:900; font-size:22px; letter-spacing:.4px; color:var(--key); }
+  .cap .bar h2 span { color:var(--amber); }
+  .cap .bar em { font-family:'VT323',monospace; font-style:normal; font-size:17px; color:var(--amber); letter-spacing:.06em; }
+  .cap .body { display:grid; grid-template-columns:1.05fr 1fr; gap:18px; padding:16px 18px 17px; }
+
+  .ctrls { display:flex; flex-direction:column; gap:11px; }
+  .ctrl { display:flex; align-items:center; gap:13px; }
+  .ctrl .glyph { flex:none; width:46px; height:36px; display:flex; align-items:center; justify-content:center; }
+  .ctrl svg { display:block; }
+  .ctrl .txt { font-size:13.5px; line-height:1.3; color:var(--dim); }
+  .ctrl .txt b { display:block; font-family:'VT323',monospace; font-size:16px; letter-spacing:.12em; color:var(--key); }
+
+  .goal { border-left:3px solid var(--amber); padding-left:14px; }
+  .goal h4 { font-family:'Press Start 2P',monospace; font-size:9px; letter-spacing:.2em; color:var(--amber); margin-bottom:9px; }
+  .goal p { font-size:13.5px; line-height:1.55; color:var(--dim); margin-bottom:10px; }
+  .goal p b { color:var(--key); }
+  .goal ul { list-style:none; display:flex; flex-direction:column; gap:7px; }
+  .goal li { font-size:13.5px; color:var(--dim); padding-left:18px; position:relative; line-height:1.35; }
+  .goal li::before { content:'▸'; position:absolute; left:0; color:var(--green); }
+  .goal li b { color:var(--key); }
+
+  .foot { margin-top:14px; display:flex; align-items:center; gap:14px;
+    border-top:1px dashed rgba(61,255,122,.2); padding-top:13px; font-family:'VT323',monospace; font-size:16px; color:var(--dim); letter-spacing:.04em; }
+  .foot .tag { font-family:'Press Start 2P',monospace; font-size:8px; letter-spacing:.16em; color:var(--ink); background:var(--green); padding:5px 9px; border-radius:5px; }
+
+  @page { size:letter portrait; margin:0; }
+  @media print { html,body{ background:#000; } }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="kick">▎ Pocket Guide</div>
+          <h1>How to Play<small>Internet Epochalypse — a 3D journey through net culture</small></h1>
+        </div>
+        <div class="badge"><b>OPEN ANYWHERE</b>any browser · no app<br>no account needed</div>
+      </div>
+
+      <div class="steps">
+        <div class="card">
+          <div class="n"><i>1</i><h3>Open the file</h3></div>
+          <p><b>Double-click</b> the HTML file — it opens in any web browser (Chrome, Safari, Edge). Nothing to install. <b>Click once anywhere</b> to turn on the sound.</p>
+        </div>
+        <div class="card">
+          <div class="n"><i>2</i><h3>Travel through time</h3></div>
+          <p><b>Drag</b> to orbit the world. <b>Scroll or swipe</b> to fly forward and back through six eras — the whole interface reskins as you arrive in each one.</p>
+        </div>
+        <div class="card">
+          <div class="n"><i>3</i><h3>Find the glowing tags</h3></div>
+          <p>Each era holds a <span class="kbd">▶ green tag</span> floating on a device or screen. That's a real, working artifact from that era — <b>click it to open it</b>.</p>
+        </div>
+        <div class="card">
+          <div class="n"><i>4</i><h3>Play, then come back</h3></div>
+          <p>Dial a modem, customize a profile, refresh a feed, generate an image — and <b>play Capsumon</b>. Press <span class="kbd">ESC</span> or ✕ to return to the timeline.</p>
+        </div>
+      </div>
+
+      <div class="cap">
+        <div class="bar">
+          <h2>Featured · <span>CAPSUMON</span></h2>
+          <em>catch all 6 to win ▸</em>
+        </div>
+        <div class="body">
+          <div class="ctrls">
+            <div class="ctrl">
+              <span class="glyph"><svg viewBox="0 0 34 34" width="38" height="34" fill="none" stroke="#dfffe6" stroke-width="2"><path d="M13 4h8v9h9v8h-9v9h-8v-9H4v-8h9z" stroke-linejoin="round"/></svg></span>
+              <span class="txt"><b>D-PAD</b>walk &amp; explore</span>
+            </div>
+            <div class="ctrl">
+              <span class="glyph"><svg viewBox="0 0 34 34" width="34" height="34"><circle cx="17" cy="17" r="13" fill="none" stroke="#dfffe6" stroke-width="2"/><text x="17" y="22.5" text-anchor="middle" font-size="15" font-weight="800" fill="#dfffe6" font-family="Archivo,sans-serif">A</text></svg></span>
+              <span class="txt"><b>A — CONFIRM</b>talk · throw a capsule</span>
+            </div>
+            <div class="ctrl">
+              <span class="glyph"><svg viewBox="0 0 34 34" width="34" height="34"><circle cx="17" cy="17" r="13" fill="none" stroke="#dfffe6" stroke-width="2"/><text x="17" y="22.5" text-anchor="middle" font-size="15" font-weight="800" fill="#dfffe6" font-family="Archivo,sans-serif">B</text></svg></span>
+              <span class="txt"><b>B — BACK</b>cancel · flee a battle</span>
+            </div>
+            <div class="ctrl">
+              <span class="glyph"><svg viewBox="0 0 46 22" width="44" height="22"><rect x="3" y="5" width="40" height="12" rx="6" fill="none" stroke="#dfffe6" stroke-width="2"/></svg></span>
+              <span class="txt"><b>START</b>open the CAPSU-DEX</span>
+            </div>
+            <div class="ctrl">
+              <span class="glyph"><svg viewBox="0 0 46 22" width="44" height="22"><rect x="3" y="5" width="40" height="12" rx="6" fill="none" stroke="#dfffe6" stroke-width="2"/></svg></span>
+              <span class="txt"><b>SELECT</b>show your objective</span>
+            </div>
+            <div class="ctrl">
+              <span class="glyph" style="font-family:'VT323',monospace;font-size:13px;color:#9bbcab;line-height:1.05;text-align:center;">KEYS<br>z x ↵</span>
+              <span class="txt"><b>ON A KEYBOARD</b>arrows = move · Z = A<br>X = B · Enter = A · Space = START</span>
+            </div>
+          </div>
+          <div class="goal">
+            <h4>The Quest</h4>
+            <p>Wild <b>capsumon</b> hide in the tall grass. <b>Weaken</b> one with A, then <b>throw a capsule</b> — the weaker it is, the better it sticks.</p>
+            <ul>
+              <li>Fill the <b>DEX</b> — catch all <b>6 species</b> across the meadow, forest &amp; cave.</li>
+              <li>Walk into a <b>building</b> to meet trainers and their capsumon.</li>
+              <li>Rest free at the <b>BUD STOP</b> to fully heal your team.</li>
+              <li>Fainting just sends you home — you never lose progress.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <span class="tag">HAVE FUN</span>
+        <span>Best with sound on · works on phone, tablet &amp; computer · share the file freely.</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      function go() { setTimeout(function () { window.print(); }, 500); }
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else window.addEventListener('load', go);
+    })();
+  </script>
+</body>
+</html>

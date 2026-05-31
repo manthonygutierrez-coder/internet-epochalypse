@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Internet Epochalypse — Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@600;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --green:#3dff7a; --amber:#ffb000; --ink:#05080a; --key:#dfffe6; }
+  html, body { background:#000; color:var(--key); font-family:'Space Grotesk',sans-serif; -webkit-font-smoothing:antialiased; }
+
+  .page {
+    position:relative; width:816px; height:1056px; margin:0 auto; overflow:hidden;
+    display:flex; flex-direction:column;
+    background:
+      radial-gradient(120% 70% at 50% -10%, #0a1f14 0%, #05080a 55%, #03060a 100%);
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  /* faint perspective grid floor */
+  .grid {
+    position:absolute; inset:auto 0 0 0; height:300px; opacity:.5;
+    background-image:linear-gradient(transparent 0, transparent 96%, rgba(61,255,122,.22) 100%),
+      repeating-linear-gradient(90deg, transparent 0 47px, rgba(61,255,122,.10) 47px 48px);
+    transform:perspective(420px) rotateX(62deg); transform-origin:bottom; pointer-events:none;
+  }
+  /* scanlines */
+  .page::after { content:''; position:absolute; inset:0; pointer-events:none;
+    background:repeating-linear-gradient(transparent 0 3px, rgba(0,0,0,.18) 3px 4px); mix-blend-mode:multiply; }
+
+  .pad { position:relative; z-index:2; padding:54px 60px 0; flex:1; }
+
+  .kicker { font-family:'Press Start 2P',monospace; font-size:10px; letter-spacing:.32em; color:var(--green);
+    text-transform:uppercase; margin-bottom:26px; display:flex; align-items:center; gap:12px; }
+  .kicker::before { content:''; width:34px; height:2px; background:var(--green); box-shadow:0 0 8px var(--green); }
+
+  h1 { font-family:'Archivo',sans-serif; font-weight:900; font-size:84px; line-height:.9; letter-spacing:-2px;
+    text-transform:uppercase; color:var(--key);
+    text-shadow:0 0 24px rgba(61,255,122,.45), 0 0 2px rgba(61,255,122,.9); }
+  h1 .yel { color:var(--amber); text-shadow:0 0 24px rgba(255,176,0,.5); display:block; }
+
+  .lede { margin-top:20px; max-width:580px; font-size:16px; line-height:1.5; color:#a9c7b4; }
+  .lede b { color:var(--key); }
+
+  .rule { margin:28px 0 18px; height:2px; background:linear-gradient(90deg,var(--green),transparent); box-shadow:0 0 10px rgba(61,255,122,.4); }
+
+  .erahead { font-family:'VT323',monospace; font-size:22px; letter-spacing:.18em; color:var(--green); text-transform:uppercase; margin-bottom:10px; }
+
+  .timeline { display:flex; flex-direction:column; gap:9px; }
+  .era { position:relative; display:grid; grid-template-columns:118px 1fr auto; align-items:center; gap:18px;
+    padding:11px 18px 11px 16px; border-left:4px solid var(--c); border-radius:0 8px 8px 0;
+    background:linear-gradient(90deg, color-mix(in srgb, var(--c) 16%, transparent), color-mix(in srgb, var(--c) 4%, transparent) 60%, transparent); }
+  .era .yr { font-family:'VT323',monospace; font-size:24px; color:var(--c); letter-spacing:.04em; }
+  .era .nm { font-weight:800; font-size:20px; color:var(--key); letter-spacing:.2px; }
+  .era .tg { font-family:'VT323',monospace; font-size:17px; color:#8fb0a0; margin-top:1px; letter-spacing:.06em; }
+  .era .dot { width:13px; height:13px; border-radius:50%; background:var(--c); box-shadow:0 0 10px var(--c); }
+
+  .foot { position:relative; z-index:2; flex:none; padding:18px 60px 26px;
+    border-top:1px solid rgba(61,255,122,.22); background:linear-gradient(180deg, transparent, rgba(3,8,6,.9)); }
+  .foot .lbl { font-family:'Press Start 2P',monospace; font-size:9px; letter-spacing:.2em; color:var(--amber); margin-bottom:12px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip { flex:none; font-family:'VT323',monospace; font-size:16px; letter-spacing:.06em; color:var(--ink); background:var(--green);
+    padding:3px 11px; border-radius:5px; box-shadow:0 0 10px rgba(61,255,122,.35); white-space:nowrap; }
+  .chip.b { background:var(--amber); box-shadow:0 0 10px rgba(255,176,0,.35); }
+  .how { display:flex; align-items:baseline; gap:14px; margin-top:18px; padding-top:16px;
+    border-top:1px dashed rgba(61,255,122,.18); }
+  .how .big { font-family:'Archivo',sans-serif; font-weight:900; font-size:26px; color:var(--key); line-height:1; white-space:nowrap; }
+  .how .sm { font-size:12.5px; color:#8fb0a0; line-height:1.45; }
+
+  @page { size:letter portrait; margin:0; }
+  @media print { html,body{ background:#000; } .page{ box-shadow:none; } }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="grid"></div>
+    <div class="pad">
+      <div class="kicker">A 3D Chronology of Net Culture</div>
+      <h1>Internet<span class="yel">Epochalypse</span></h1>
+      <p class="lede">Drag to orbit. Scroll to travel through time. <b>Six eras of the internet</b>, rebuilt as a living 3D world — each one reskins the interface in its own colors, type, and sound as you fly into it.</p>
+
+      <div class="rule"></div>
+      <div class="erahead">▎ Travel the timeline</div>
+      <div class="timeline">
+        <div class="era" style="--c:#3dff7a">
+          <div class="yr">1991–96</div>
+          <div><div class="nm">Dial-Up Dawn</div><div class="tg">CONNECTING AT 14.4 KBPS</div></div>
+          <div class="dot"></div>
+        </div>
+        <div class="era" style="--c:#ff2ec4">
+          <div class="yr">1996–01</div>
+          <div><div class="nm">The Wild Web</div><div class="tg">UNDER CONSTRUCTION</div></div>
+          <div class="dot"></div>
+        </div>
+        <div class="era" style="--c:#3a8dff">
+          <div class="yr">2002–09</div>
+          <div><div class="nm">Web 2.0</div><div class="tg">NOW WITH ROUNDED CORNERS™</div></div>
+          <div class="dot"></div>
+        </div>
+        <div class="era" style="--c:#2e9bff">
+          <div class="yr">2010–15</div>
+          <div><div class="nm">The Feed</div><div class="tg">PULL TO REFRESH</div></div>
+          <div class="dot"></div>
+        </div>
+        <div class="era" style="--c:#ff2e93">
+          <div class="yr">2016–21</div>
+          <div><div class="nm">Vertical Maximalism</div><div class="tg">FOR YOU ▶</div></div>
+          <div class="dot"></div>
+        </div>
+        <div class="era" style="--c:#8f7bff">
+          <div class="yr">2022–NOW</div>
+          <div><div class="nm">The Synthetic Age</div><div class="tg">GENERATING…</div></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="lbl">7 artifacts you can actually use</div>
+      <div class="chips">
+        <span class="chip">▶ DIAL IN</span>
+        <span class="chip b">▶ PLAY CAPSUMON</span>
+        <span class="chip">▶ I CAN HAS MEMES?</span>
+        <span class="chip">▶ CUSTOMIZE MY PAGE</span>
+        <span class="chip">▶ PULL TO REFRESH</span>
+        <span class="chip">▶ OPEN FOR YOU</span>
+        <span class="chip">▶ GENERATE</span>
+      </div>
+      <div class="how">
+        <div class="big">Just open the file.</div>
+        <div class="sm">One HTML file · any browser · no install, no account. Click once anywhere to turn on sound.</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      function go() { setTimeout(function () { window.print(); }, 500); }
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else window.addEventListener('load', go);
+    })();
+  </script>
+</body>
+</html>
